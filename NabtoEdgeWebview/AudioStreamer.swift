@@ -41,6 +41,7 @@ class AudioStreamer {
     let mixerNode: AVAudioMixerNode
     let playerNode = AVAudioPlayerNode()
     let sampleRate: Double
+    let sampleRateConversion: Double
     let inputFormat: AVAudioFormat
     let outputFormat: AVAudioFormat
     let formatConverter: AVAudioConverter
@@ -71,6 +72,8 @@ class AudioStreamer {
         outputFormat = mixerNode.outputFormat(forBus: 0)
         inputFormat = AVAudioFormat(commonFormat: .pcmFormatInt16, sampleRate: sampleRate, channels: 1, interleaved: false)!
         formatConverter = AVAudioConverter(from: inputFormat, to: outputFormat)!
+        
+        sampleRateConversion = inputFormat.sampleRate / outputFormat.sampleRate
         
         engine.attach(playerNode)
         engine.connect(playerNode, to: mixerNode, format: playerNode.outputFormat(forBus: 0))
@@ -123,8 +126,9 @@ class AudioStreamer {
                 
                 memcpy(channel, samplePtr, sampleCount * sampleSize)
                 
-                let convertedBuffer = AVAudioPCMBuffer(pcmFormat: outputFormat, frameCapacity: UInt32(sampleCount))!
-                convertedBuffer.frameLength = UInt32(sampleCount)
+                let capacity = UInt32(Double(pcmBuffer.frameCapacity) / sampleRateConversion)
+                let convertedBuffer = AVAudioPCMBuffer(pcmFormat: outputFormat, frameCapacity: capacity)!
+                convertedBuffer.frameLength = capacity
                 
                 let inputBlock: AVAudioConverterInputBlock = { inNumPackets, outStatus in
                     outStatus.pointee = AVAudioConverterInputStatus.haveData
