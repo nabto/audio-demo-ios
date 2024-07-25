@@ -41,6 +41,9 @@ class AudioStreamer {
     let mixerNode: AVAudioMixerNode
     let playerNode = AVAudioPlayerNode()
     let sampleRate: Double
+    let inputFormat: AVAudioFormat
+    let outputFormat: AVAudioFormat
+    let formatConverter: AVAudioConverter
     
     // Audio thread
     var isAudioThreadRunning = true
@@ -57,21 +60,26 @@ class AudioStreamer {
     
     // Circular buffer
     let circularBuffer = UnsafeMutablePointer<TPCircularBuffer>.allocate(capacity: 1)
-    let floatSize = MemoryLayout<Float>.size
+    let sampleSize = MemoryLayout<Int16>.size
     
     init() {
         try! audioSession.setCategory(.playback, mode: .spokenAudio, policy: .longFormAudio)
         try! audioSession.setActive(true)
         mixerNode = engine.mainMixerNode
-        sampleRate = mixerNode.outputFormat(forBus: 0).sampleRate
+        
+        sampleRate = 8000.0
+        outputFormat = mixerNode.outputFormat(forBus: 0)
+        inputFormat = AVAudioFormat(commonFormat: .pcmFormatInt16, sampleRate: sampleRate, channels: 1, interleaved: false)!
+        formatConverter = AVAudioConverter(from: inputFormat, to: outputFormat)!
+        
         engine.attach(playerNode)
         engine.connect(playerNode, to: mixerNode, format: playerNode.outputFormat(forBus: 0))
         try! engine.start()
         playerNode.play()
         
         // allow 5 seconds of buffered audio
-        let bufferSizeInSeconds = 10
-        let bufferSize = Int(sampleRate) * bufferSizeInSeconds * floatSize
+        let bufferSizeInSeconds = 5
+        let bufferSize = Int(sampleRate) * bufferSizeInSeconds * sampleSize
         _TPCircularBufferInit(circularBuffer, UInt32(bufferSize), MemoryLayout<TPCircularBuffer>.size)
         
         audioThread = Thread.init(target: self, selector: #selector(audioConsumer), object: nil)
@@ -99,7 +107,7 @@ class AudioStreamer {
         // and poll the circular buffer every 200ms by sleeping the thread
         var availableBytes = UInt32(0)
         let minSamples = Int(sampleRate / 4)
-        let minBytes = UInt32(minSamples * floatSize)
+        let minBytes = UInt32(minSamples * sampleSize)
         let sleepDuration = TimeBase.toAbs(nanos: 200 * TimeBase.NANOS_PER_MILLISEC)
         
         while isAudioThreadRunning {
@@ -107,18 +115,31 @@ class AudioStreamer {
             
             if let tail = tail, availableBytes > minBytes {
                 let sampleCount = minSamples
-                let floatptr = tail.bindMemory(to: Float.self, capacity: sampleCount)
+                let samplePtr = tail.bindMemory(to: Int16.self, capacity: sampleCount)
                 
-                let pcmBuffer = AVAudioPCMBuffer(pcmFormat: (playerNode.outputFormat(forBus: 0)), frameCapacity: UInt32(sampleCount))!
+                let pcmBuffer = AVAudioPCMBuffer(pcmFormat: inputFormat, frameCapacity: UInt32(sampleCount))!
                 pcmBuffer.frameLength = UInt32(sampleCount)
-                let lchannel = pcmBuffer.floatChannelData![0]
-                let rchannel = pcmBuffer.floatChannelData![1]
+                let channel = pcmBuffer.int16ChannelData![0]
                 
-                memcpy(lchannel, floatptr, sampleCount * floatSize)
-                memcpy(rchannel, floatptr, sampleCount * floatSize)
+                memcpy(channel, samplePtr, sampleCount * sampleSize)
                 
-                playerNode.scheduleBuffer(pcmBuffer)
-                TPCircularBufferConsume(circularBuffer, minBytes)
+                let convertedBuffer = AVAudioPCMBuffer(pcmFormat: outputFormat, frameCapacity: UInt32(sampleCount))!
+                convertedBuffer.frameLength = UInt32(sampleCount)
+                
+                let inputBlock: AVAudioConverterInputBlock = { inNumPackets, outStatus in
+                    outStatus.pointee = AVAudioConverterInputStatus.haveData
+                    return pcmBuffer
+                }
+                
+                var error: NSError? = nil
+                formatConverter.convert(to: convertedBuffer, error: &error, withInputFrom: inputBlock)
+                
+                if error != nil {
+                    fatalError(error!.localizedDescription)
+                } else {
+                    playerNode.scheduleBuffer(convertedBuffer)
+                    TPCircularBufferConsume(circularBuffer, minBytes)
+                }
             }
             
             // mach_wait_until for low latency sleep
