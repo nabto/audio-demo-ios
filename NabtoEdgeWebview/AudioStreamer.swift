@@ -55,16 +55,18 @@ class AudioStreamer {
     var sockthread: Thread! = nil
     var connectionHost: String! = nil
     var connectionPort: UInt16 = 0
-    
-    // Test producer
-    var testProducer: Thread! = nil
+    var isConnected = false
     
     // Circular buffer
     let circularBuffer = UnsafeMutablePointer<TPCircularBuffer>.allocate(capacity: 1)
     let sampleSize = MemoryLayout<Int16>.size
     
+    // Recording
+    var isRecording = false
+    let recordConverter: AVAudioConverter
+    
     init() {
-        try! audioSession.setCategory(.playback, mode: .spokenAudio, policy: .longFormAudio)
+        try! audioSession.setCategory(.playAndRecord)
         try! audioSession.setActive(true)
         mixerNode = engine.mainMixerNode
         
@@ -75,8 +77,13 @@ class AudioStreamer {
         
         sampleRateConversion = inputFormat.sampleRate / outputFormat.sampleRate
         
+        // engine setup
         engine.attach(playerNode)
         engine.connect(playerNode, to: mixerNode, format: playerNode.outputFormat(forBus: 0))
+        
+        recordConverter = AVAudioConverter(from:  engine.inputNode.inputFormat(forBus: 0), to: inputFormat)!
+        
+        engine.prepare()
         try! engine.start()
         playerNode.play()
         
@@ -91,6 +98,7 @@ class AudioStreamer {
     
     deinit {
         isAudioThreadRunning = false
+        engine.inputNode.removeTap(onBus: 0)
         audioThread.cancel()
         TPCircularBufferCleanup(circularBuffer)
         circularBuffer.deallocate()
@@ -101,6 +109,47 @@ class AudioStreamer {
         connectionPort = port
         sockthread = Thread.init(target: self, selector: #selector(tcpStreamThread), object: nil)
         sockthread.start()
+    }
+    
+    func startRecording() {
+        if !isConnected { return }
+        
+        isRecording = true
+        let recordFormat = engine.inputNode.inputFormat(forBus: 0)
+        let deviceFormat = self.inputFormat
+        engine.inputNode.installTap(
+            onBus: 0,
+            bufferSize: 4096,
+            format: recordFormat,
+            block: { (buffer, when) in
+                let conv = recordFormat.sampleRate / deviceFormat.sampleRate
+                let capacity = UInt32(Double(buffer.frameCapacity) / conv)
+                let convertedBuffer = AVAudioPCMBuffer(pcmFormat: deviceFormat, frameCapacity: capacity)!
+                let len = UInt32(Double(buffer.frameLength) / conv)
+                convertedBuffer.frameLength = len
+                
+                let inputBlock: AVAudioConverterInputBlock = { inNumPackets, outStatus in
+                    outStatus.pointee = AVAudioConverterInputStatus.haveData
+                    return buffer
+                }
+                
+                var error: NSError? = nil
+                self.recordConverter.convert(to: convertedBuffer, error: &error, withInputFrom: inputBlock)
+                
+                if error != nil {
+                    fatalError(error!.localizedDescription)
+                } else {
+                    write(self.sockfd, convertedBuffer.int16ChannelData![0], Int(len) * self.sampleSize)
+                }
+            }
+        )
+    }
+    
+    func stopRecording() {
+        if !isConnected { return }
+        
+        isRecording = false
+        engine.inputNode.removeTap(onBus: 0)
     }
     
     @objc
@@ -191,7 +240,7 @@ class AudioStreamer {
         if connectResult != 0 {
             fatalError("failed to connect")
         } else {
-            print("connected")
+            isConnected = true
         }
     }
 }

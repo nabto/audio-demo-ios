@@ -19,9 +19,10 @@ class EdgeDeviceViewController: DeviceDetailsViewController, WKUIDelegate {
     private let cborEncoder: CBOREncoder = CBOREncoder()
     private var tunnel: TcpTunnel? = nil
 
-    @IBOutlet weak var settingsButton       : UIButton!
     @IBOutlet weak var connectingView       : UIView!
     @IBOutlet weak var spinner              : UIActivityIndicatorView!
+    @IBOutlet weak var recordButton         : UIButton!
+    private var recordImageView : UIImageView!
     
     @IBOutlet weak var deviceIdLabel         : UILabel!
     @IBOutlet weak var appNameAndVersionLabel: UILabel!
@@ -45,6 +46,18 @@ class EdgeDeviceViewController: DeviceDetailsViewController, WKUIDelegate {
             } else {
                 self.hideSpinner()
             }
+        }
+    }
+    
+    @IBAction func recordButtonPressed(sender: UIButton) {
+        if !audioStreamer.isRecording {
+            recordImageView.image = UIImage(systemName: "mic.circle.fill")
+            recordImageView.tintColor = .red
+            DispatchQueue.main.async { self.audioStreamer.startRecording() }
+        } else {
+            recordImageView.image = UIImage(systemName: "mic.slash.circle.fill")
+            recordImageView.tintColor = nil
+            DispatchQueue.main.async { self.audioStreamer.stopRecording() }
         }
     }
 
@@ -153,6 +166,21 @@ class EdgeDeviceViewController: DeviceDetailsViewController, WKUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.busy = true
+        
+        
+        var config = UIButton.Configuration.plain()
+        config.baseBackgroundColor = .clear
+        recordButton.configuration = config
+        
+        recordImageView = UIImageView()
+        recordImageView.image = UIImage(systemName: "mic.slash.circle.fill")
+        recordImageView.translatesAutoresizingMaskIntoConstraints = false
+        recordButton.addSubview(recordImageView)
+        recordImageView.contentMode = .scaleAspectFill
+        recordImageView.widthAnchor.constraint(equalTo: recordButton.widthAnchor).isActive = true
+        recordImageView.heightAnchor.constraint(equalTo: recordButton.heightAnchor).isActive = true
+        recordImageView.centerXAnchor.constraint(equalTo: recordButton.centerXAnchor).isActive = true
+        recordImageView.centerYAnchor.constraint(equalTo: recordButton.centerYAnchor).isActive = true
         
         startTunnelOnMainThread()
     }

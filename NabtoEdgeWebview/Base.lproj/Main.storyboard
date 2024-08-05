@@ -687,7 +687,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SEn-d0-Gzg">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SEn-d0-Gzg">
                                 <rect key="frame" x="127.5" y="164" width="120" height="80"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="wTj-Kb-KzJ">
@@ -711,15 +711,32 @@
                                     <constraint firstAttribute="width" constant="120" id="eJo-XN-0gI"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="waveform.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Pgk-WI-vyL">
-                                <rect key="frame" x="84" y="227.5" width="207" height="211"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="0.91469472650000005" green="0.37459918125470892" blue="0.40124681381299449" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </imageView>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3yr-2K-mXU">
+                                <rect key="frame" x="97.5" y="154" width="180" height="180"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="5ub-H6-Lmh"/>
+                                    <constraint firstAttribute="width" secondItem="3yr-2K-mXU" secondAttribute="height" multiplier="1:1" id="ZWf-qa-dmA"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <backgroundConfiguration key="background"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="self.imageView.contentMode">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="recordButtonPressedWithSender:" destination="XEm-96-IUG" eventType="touchDown" id="IcF-21-NRb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="3yr-2K-mXU" firstAttribute="centerY" secondItem="H8o-od-ao2" secondAttribute="bottom" constant="180" id="92J-TU-FAD"/>
                             <constraint firstItem="SEn-d0-Gzg" firstAttribute="centerX" secondItem="JqJ-bT-AG1" secondAttribute="centerX" id="C6q-qZ-dXW"/>
+                            <constraint firstItem="SEn-d0-Gzg" firstAttribute="top" secondItem="H8o-od-ao2" secondAttribute="bottom" constant="100" id="Fqu-Ky-Fth"/>
+                            <constraint firstItem="3yr-2K-mXU" firstAttribute="centerX" secondItem="JqJ-bT-AG1" secondAttribute="centerX" id="f7R-jS-wGa"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Video Device" id="smk-DZ-MF8">
@@ -732,6 +749,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="connectingView" destination="SEn-d0-Gzg" id="2sF-Mx-oOm"/>
+                        <outlet property="recordButton" destination="3yr-2K-mXU" id="vpo-hi-q8u"/>
                         <outlet property="spinner" destination="wTj-Kb-KzJ" id="R3S-BU-QIH"/>
                     </connections>
                 </viewController>
@@ -1439,7 +1457,6 @@ New devices can be added from the overview page: To add a device, your client (t
         <image name="refresh" width="20" height="20"/>
         <image name="settings" width="36" height="36"/>
         <image name="video" catalog="system" width="128" height="82"/>
-        <image name="waveform.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="darkTextColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
