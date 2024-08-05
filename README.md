@@ -10,7 +10,7 @@ The app installs dependencies through Cocoapod, so to build and run, perform the
 
 1. Install dependencies: `$ pod install` (see https://www.cocoapods.org for info on installation of the pod tool).
 
-2. Open the generated workspace in XCode and work from there: `open NabtoEdgeWebview.xcworkspace`
+2. Open the generated workspace in XCode and work from there: `open NabtoEdgeAudioDemo.xcworkspace`
 
 ## Questions?
 

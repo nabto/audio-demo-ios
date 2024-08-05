@@ -2,12 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>The app connects to an IoT device (e.g. a smart doorbell) and sends audio from the microphone to the IoT device.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Edge Video</string>
+	<string>Edge Audio Demo</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -30,8 +28,12 @@
 	<array>
 		<string>_nabto._udp</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>The app uses a 3rd party library for showing the video stream. This 3rd party library includes code for accessing the iOS device's camera. The camera features are not used in the app, but this notice is necessary due to the inclusion of the library.</string>
 	<key>NSLocalNetworkUsageDescription</key>
 	<string>Discover and connect to local Nabto Edge devices to retrieve public device information</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>The app connects to an IoT device (e.g. a smart doorbell) and sends audio from the microphone to the IoT device.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -53,7 +55,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSCameraUsageDescription</key>
-	<string>The app uses a 3rd party library for showing the video stream. This 3rd party library includes code for accessing the iOS device&apos;s camera. The camera features are not used in the app, but this notice is necessary due to the inclusion of the library.</string>
 </dict>
 </plist>

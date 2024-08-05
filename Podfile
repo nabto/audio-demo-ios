@@ -24,10 +24,10 @@ def common
   pod 'TPCircularBuffer'
 end
 
-target 'Nabto Edge Webview' do
+target 'Nabto Edge Audio Demo' do
   common
 end
 
-target 'NabtoEdgeWebviewTests' do
+target 'NabtoEdgeAudioDemoTests' do
   common
 end

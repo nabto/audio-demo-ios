@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		009A708D1F3434E15D73F5F5 /* Pods_Nabto_Edge_Webview.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 126D11F565C20E827BAB6FD4 /* Pods_Nabto_Edge_Webview.framework */; };
+		01C413A95528A3E35FC2436B /* Pods_NabtoEdgeAudioDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D63B601754C1A255C6CE6A93 /* Pods_NabtoEdgeAudioDemoTests.framework */; };
+		3665CE3F771995DE5307F96D /* Pods_Nabto_Edge_Audio_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301AB67C5708A4A6045B0C44 /* Pods_Nabto_Edge_Audio_Demo.framework */; };
 		4236EDAE299E72210049A425 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4236EDAD299E72210049A425 /* AssetsLibrary.framework */; };
 		4245817E2C4FD22A009D5CFA /* AudioStreamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4245817D2C4FD22A009D5CFA /* AudioStreamer.swift */; };
 		4245817F2C4FD22A009D5CFA /* AudioStreamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4245817D2C4FD22A009D5CFA /* AudioStreamer.swift */; };
-		45022383759B3A4BBF3A7F7F /* Pods_NabtoEdgeWebviewTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B3B9F30465A67F31792960 /* Pods_NabtoEdgeWebviewTests.framework */; };
 		6D04A6DB1E3F4C4800DD9F70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D04A6DA1E3F4C4800DD9F70 /* AppDelegate.swift */; };
 		6D04A6DD1E3F4C4800DD9F70 /* OverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D04A6DC1E3F4C4800DD9F70 /* OverviewViewController.swift */; };
 		6D04A6E01E3F4C4800DD9F70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D04A6DE1E3F4C4800DD9F70 /* Main.storyboard */; };
@@ -64,25 +64,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		126D11F565C20E827BAB6FD4 /* Pods_Nabto_Edge_Webview.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nabto_Edge_Webview.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F9D2E967173336694101711 /* Pods-Nabto Edge Webview.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nabto Edge Webview.release.xcconfig"; path = "Target Support Files/Pods-Nabto Edge Webview/Pods-Nabto Edge Webview.release.xcconfig"; sourceTree = "<group>"; };
+		231E0F1424D0F9B765B039D5 /* Pods-Nabto Edge Audio Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nabto Edge Audio Demo.debug.xcconfig"; path = "Target Support Files/Pods-Nabto Edge Audio Demo/Pods-Nabto Edge Audio Demo.debug.xcconfig"; sourceTree = "<group>"; };
+		301AB67C5708A4A6045B0C44 /* Pods_Nabto_Edge_Audio_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nabto_Edge_Audio_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		38ACE60244CD232FE27564C7 /* Pods-NabtoEdgeWebviewTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NabtoEdgeWebviewTests.debug.xcconfig"; path = "Target Support Files/Pods-NabtoEdgeWebviewTests/Pods-NabtoEdgeWebviewTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3984BC81D430E3673E4F53A3 /* Pods-Nabto Edge Webview.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nabto Edge Webview.debug.xcconfig"; path = "Target Support Files/Pods-Nabto Edge Webview/Pods-Nabto Edge Webview.debug.xcconfig"; sourceTree = "<group>"; };
+		3ADECE95F888056A067C1A60 /* Pods-Nabto Edge Audio Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nabto Edge Audio Demo.release.xcconfig"; path = "Target Support Files/Pods-Nabto Edge Audio Demo/Pods-Nabto Edge Audio Demo.release.xcconfig"; sourceTree = "<group>"; };
 		418369131D7B7FFCF8F490C7 /* Pods-NabtoEdgeWebviewTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NabtoEdgeWebviewTests.release.xcconfig"; path = "Target Support Files/Pods-NabtoEdgeWebviewTests/Pods-NabtoEdgeWebviewTests.release.xcconfig"; sourceTree = "<group>"; };
 		4236EDAD299E72210049A425 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		4245817D2C4FD22A009D5CFA /* AudioStreamer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStreamer.swift; sourceTree = "<group>"; };
-		60B3B9F30465A67F31792960 /* Pods_NabtoEdgeWebviewTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NabtoEdgeWebviewTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6D04A6D71E3F4C4800DD9F70 /* Nabto Edge Webview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nabto Edge Webview.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D04A6D71E3F4C4800DD9F70 /* Nabto Edge Audio Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nabto Edge Audio Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D04A6DA1E3F4C4800DD9F70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6D04A6DC1E3F4C4800DD9F70 /* OverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewController.swift; sourceTree = "<group>"; };
 		6D04A6DF1E3F4C4800DD9F70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6D04A6E11E3F4C4800DD9F70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6D04A6E41E3F4C4800DD9F70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6D04A6E61E3F4C4800DD9F70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6D04A6EB1E3F4C4800DD9F70 /* NabtoEdgeWebviewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NabtoEdgeWebviewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D04A6EB1E3F4C4800DD9F70 /* NabtoEdgeAudioDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NabtoEdgeAudioDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D04A6EF1E3F4C4800DD9F70 /* OtherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherTests.swift; sourceTree = "<group>"; };
 		6D04A6F11E3F4C4800DD9F70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6D04A70B1E3F53C900DD9F70 /* NabtoEdgeWebview-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NabtoEdgeWebview-Bridging-Header.h"; sourceTree = "<group>"; };
+		6D04A70B1E3F53C900DD9F70 /* NabtoEdgeAudioDemo-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NabtoEdgeAudioDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		6D04A7471E3F57E900DD9F70 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6D04A7531E3F59BF00DD9F70 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6D04A7541E3F59BF00DD9F70 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -96,7 +97,10 @@
 		6DC4A1D91E40F8CB005B6CAD /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		6DC4A1E01E40F9F1005B6CAD /* PairingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PairingViewController.swift; sourceTree = "<group>"; };
 		6DC4A1F31E42633F005B6CAD /* CustomTableViewCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCells.swift; sourceTree = "<group>"; };
+		CB7EBA95386E9621D0559879 /* Pods-NabtoEdgeAudioDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NabtoEdgeAudioDemoTests.release.xcconfig"; path = "Target Support Files/Pods-NabtoEdgeAudioDemoTests/Pods-NabtoEdgeAudioDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		D455B17B28A51AA90011FD72 /* PairingConfirmedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingConfirmedViewController.swift; sourceTree = "<group>"; };
+		D63B601754C1A255C6CE6A93 /* Pods_NabtoEdgeAudioDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NabtoEdgeAudioDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDCC5D9FE21049DB71CB9334 /* Pods-NabtoEdgeAudioDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NabtoEdgeAudioDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-NabtoEdgeAudioDemoTests/Pods-NabtoEdgeAudioDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E9223BABCA33CFC89FFAB851 /* EdgeConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EdgeConnectionManager.swift; sourceTree = "<group>"; };
 		E9272A38B76AF9CE5C3FE8CF /* AddDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDeviceViewController.swift; sourceTree = "<group>"; };
 		E92A91311C62C726F2ECEB44 /* DeviceDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceDetailsViewController.swift; sourceTree = "<group>"; };
@@ -115,7 +119,7 @@
 				6D04A7561E3F59BF00DD9F70 /* UIKit.framework in Frameworks */,
 				4236EDAE299E72210049A425 /* AssetsLibrary.framework in Frameworks */,
 				6D04A7481E3F57E900DD9F70 /* Foundation.framework in Frameworks */,
-				009A708D1F3434E15D73F5F5 /* Pods_Nabto_Edge_Webview.framework in Frameworks */,
+				3665CE3F771995DE5307F96D /* Pods_Nabto_Edge_Audio_Demo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,7 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45022383759B3A4BBF3A7F7F /* Pods_NabtoEdgeWebviewTests.framework in Frameworks */,
+				01C413A95528A3E35FC2436B /* Pods_NabtoEdgeAudioDemoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,8 +137,8 @@
 		6D04A6CE1E3F4C4800DD9F70 = {
 			isa = PBXGroup;
 			children = (
-				6D04A6D91E3F4C4800DD9F70 /* NabtoEdgeWebview */,
-				6D04A6EE1E3F4C4800DD9F70 /* NabtoEdgeWebviewTests */,
+				6D04A6D91E3F4C4800DD9F70 /* NabtoEdgeAudioDemo */,
+				6D04A6EE1E3F4C4800DD9F70 /* NabtoEdgeAudioDemoTests */,
 				6D04A6D81E3F4C4800DD9F70 /* Products */,
 				6D04A6FA1E3F50F700DD9F70 /* Frameworks */,
 				AA0321A961738372158382D1 /* Pods */,
@@ -144,13 +148,13 @@
 		6D04A6D81E3F4C4800DD9F70 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6D04A6D71E3F4C4800DD9F70 /* Nabto Edge Webview.app */,
-				6D04A6EB1E3F4C4800DD9F70 /* NabtoEdgeWebviewTests.xctest */,
+				6D04A6D71E3F4C4800DD9F70 /* Nabto Edge Audio Demo.app */,
+				6D04A6EB1E3F4C4800DD9F70 /* NabtoEdgeAudioDemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6D04A6D91E3F4C4800DD9F70 /* NabtoEdgeWebview */ = {
+		6D04A6D91E3F4C4800DD9F70 /* NabtoEdgeAudioDemo */ = {
 			isa = PBXGroup;
 			children = (
 				6DC4A1CF1E40F766005B6CAD /* ViewControllers */,
@@ -159,10 +163,10 @@
 				6D04A6DE1E3F4C4800DD9F70 /* Main.storyboard */,
 				6D04A7051E3F51EB00DD9F70 /* Supporting files */,
 			);
-			path = NabtoEdgeWebview;
+			path = NabtoEdgeAudioDemo;
 			sourceTree = "<group>";
 		};
-		6D04A6EE1E3F4C4800DD9F70 /* NabtoEdgeWebviewTests */ = {
+		6D04A6EE1E3F4C4800DD9F70 /* NabtoEdgeAudioDemoTests */ = {
 			isa = PBXGroup;
 			children = (
 				6D95FF231E49F37E00FB070F /* FrameworkIntegrationTests.swift */,
@@ -171,7 +175,7 @@
 				6D04A6F11E3F4C4800DD9F70 /* Info.plist */,
 				E92ABEF8BBC6C0A9BC56081D /* EdgeManagerTests.swift */,
 			);
-			path = NabtoEdgeWebviewTests;
+			path = NabtoEdgeAudioDemoTests;
 			sourceTree = "<group>";
 		};
 		6D04A6FA1E3F50F700DD9F70 /* Frameworks */ = {
@@ -183,8 +187,8 @@
 				6D04A7531E3F59BF00DD9F70 /* QuartzCore.framework */,
 				6D04A7541E3F59BF00DD9F70 /* UIKit.framework */,
 				6D04A7471E3F57E900DD9F70 /* Foundation.framework */,
-				126D11F565C20E827BAB6FD4 /* Pods_Nabto_Edge_Webview.framework */,
-				60B3B9F30465A67F31792960 /* Pods_NabtoEdgeWebviewTests.framework */,
+				301AB67C5708A4A6045B0C44 /* Pods_Nabto_Edge_Audio_Demo.framework */,
+				D63B601754C1A255C6CE6A93 /* Pods_NabtoEdgeAudioDemoTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -194,7 +198,7 @@
 			children = (
 				6D04A6E11E3F4C4800DD9F70 /* Assets.xcassets */,
 				6D04A6E31E3F4C4800DD9F70 /* LaunchScreen.storyboard */,
-				6D04A70B1E3F53C900DD9F70 /* NabtoEdgeWebview-Bridging-Header.h */,
+				6D04A70B1E3F53C900DD9F70 /* NabtoEdgeAudioDemo-Bridging-Header.h */,
 				6D04A6E61E3F4C4800DD9F70 /* Info.plist */,
 			);
 			name = "Supporting files";
@@ -236,6 +240,10 @@
 				1F9D2E967173336694101711 /* Pods-Nabto Edge Webview.release.xcconfig */,
 				38ACE60244CD232FE27564C7 /* Pods-NabtoEdgeWebviewTests.debug.xcconfig */,
 				418369131D7B7FFCF8F490C7 /* Pods-NabtoEdgeWebviewTests.release.xcconfig */,
+				231E0F1424D0F9B765B039D5 /* Pods-Nabto Edge Audio Demo.debug.xcconfig */,
+				3ADECE95F888056A067C1A60 /* Pods-Nabto Edge Audio Demo.release.xcconfig */,
+				DDCC5D9FE21049DB71CB9334 /* Pods-NabtoEdgeAudioDemoTests.debug.xcconfig */,
+				CB7EBA95386E9621D0559879 /* Pods-NabtoEdgeAudioDemoTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -243,9 +251,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6D04A6D61E3F4C4800DD9F70 /* Nabto Edge Webview */ = {
+		6D04A6D61E3F4C4800DD9F70 /* Nabto Edge Audio Demo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6D04A6F41E3F4C4800DD9F70 /* Build configuration list for PBXNativeTarget "Nabto Edge Webview" */;
+			buildConfigurationList = 6D04A6F41E3F4C4800DD9F70 /* Build configuration list for PBXNativeTarget "Nabto Edge Audio Demo" */;
 			buildPhases = (
 				A24CBFF16965FAE1449823DC /* [CP] Check Pods Manifest.lock */,
 				6D04A6D31E3F4C4800DD9F70 /* Sources */,
@@ -257,14 +265,14 @@
 			);
 			dependencies = (
 			);
-			name = "Nabto Edge Webview";
+			name = "Nabto Edge Audio Demo";
 			productName = NabtoEdgeVideo;
-			productReference = 6D04A6D71E3F4C4800DD9F70 /* Nabto Edge Webview.app */;
+			productReference = 6D04A6D71E3F4C4800DD9F70 /* Nabto Edge Audio Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		6D04A6EA1E3F4C4800DD9F70 /* NabtoEdgeWebviewTests */ = {
+		6D04A6EA1E3F4C4800DD9F70 /* NabtoEdgeAudioDemoTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6D04A6F71E3F4C4800DD9F70 /* Build configuration list for PBXNativeTarget "NabtoEdgeWebviewTests" */;
+			buildConfigurationList = 6D04A6F71E3F4C4800DD9F70 /* Build configuration list for PBXNativeTarget "NabtoEdgeAudioDemoTests" */;
 			buildPhases = (
 				F079587CC37B286788DF8046 /* [CP] Check Pods Manifest.lock */,
 				6D04A6E71E3F4C4800DD9F70 /* Sources */,
@@ -277,9 +285,9 @@
 			dependencies = (
 				6D04A6ED1E3F4C4800DD9F70 /* PBXTargetDependency */,
 			);
-			name = NabtoEdgeWebviewTests;
+			name = NabtoEdgeAudioDemoTests;
 			productName = NabtoEdgeVideoTests;
-			productReference = 6D04A6EB1E3F4C4800DD9F70 /* NabtoEdgeWebviewTests.xctest */;
+			productReference = 6D04A6EB1E3F4C4800DD9F70 /* NabtoEdgeAudioDemoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -304,7 +312,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6D04A6D21E3F4C4800DD9F70 /* Build configuration list for PBXProject "NabtoEdgeWebview" */;
+			buildConfigurationList = 6D04A6D21E3F4C4800DD9F70 /* Build configuration list for PBXProject "NabtoEdgeAudioDemo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -318,8 +326,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6D04A6D61E3F4C4800DD9F70 /* Nabto Edge Webview */,
-				6D04A6EA1E3F4C4800DD9F70 /* NabtoEdgeWebviewTests */,
+				6D04A6D61E3F4C4800DD9F70 /* Nabto Edge Audio Demo */,
+				6D04A6EA1E3F4C4800DD9F70 /* NabtoEdgeAudioDemoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -351,7 +359,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NabtoEdgeWebviewTests/Pods-NabtoEdgeWebviewTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-NabtoEdgeAudioDemoTests/Pods-NabtoEdgeAudioDemoTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CBORCoding/CBORCoding.framework",
 				"${BUILT_PRODUCTS_DIR}/Half/Half.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
@@ -376,7 +384,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NabtoEdgeWebviewTests/Pods-NabtoEdgeWebviewTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NabtoEdgeAudioDemoTests/Pods-NabtoEdgeAudioDemoTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A24CBFF16965FAE1449823DC /* [CP] Check Pods Manifest.lock */ = {
@@ -394,7 +402,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Nabto Edge Webview-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Nabto Edge Audio Demo-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -416,7 +424,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NabtoEdgeWebviewTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-NabtoEdgeAudioDemoTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -429,7 +437,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Nabto Edge Webview/Pods-Nabto Edge Webview-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Nabto Edge Audio Demo/Pods-Nabto Edge Audio Demo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CBORCoding/CBORCoding.framework",
 				"${BUILT_PRODUCTS_DIR}/Half/Half.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
@@ -454,7 +462,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Nabto Edge Webview/Pods-Nabto Edge Webview-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Nabto Edge Audio Demo/Pods-Nabto Edge Audio Demo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -514,7 +522,7 @@
 /* Begin PBXTargetDependency section */
 		6D04A6ED1E3F4C4800DD9F70 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6D04A6D61E3F4C4800DD9F70 /* Nabto Edge Webview */;
+			target = 6D04A6D61E3F4C4800DD9F70 /* Nabto Edge Audio Demo */;
 			targetProxy = 6D04A6EC1E3F4C4800DD9F70 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -638,7 +646,7 @@
 		};
 		6D04A6F51E3F4C4800DD9F70 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3984BC81D430E3673E4F53A3 /* Pods-Nabto Edge Webview.debug.xcconfig */;
+			baseConfigurationReference = 231E0F1424D0F9B765B039D5 /* Pods-Nabto Edge Audio Demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -658,7 +666,7 @@
 					"\"${PODS_XCFRAMEWORKS_BUILD_DIR}/NabtoEdgeIamUtil\"",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = NabtoEdgeWebview/Info.plist;
+				INFOPLIST_FILE = NabtoEdgeAudioDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -672,7 +680,7 @@
 					"-lc++",
 					"-lresolv",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nabto.edge.webview;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nabto.edge.audiodemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridging-Header.h";
@@ -683,7 +691,7 @@
 		};
 		6D04A6F61E3F4C4800DD9F70 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1F9D2E967173336694101711 /* Pods-Nabto Edge Webview.release.xcconfig */;
+			baseConfigurationReference = 3ADECE95F888056A067C1A60 /* Pods-Nabto Edge Audio Demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -703,7 +711,7 @@
 					"\"${PODS_XCFRAMEWORKS_BUILD_DIR}/NabtoEdgeIamUtil\"",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = NabtoEdgeWebview/Info.plist;
+				INFOPLIST_FILE = NabtoEdgeAudioDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -717,7 +725,7 @@
 					"-lc++",
 					"-lresolv",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nabto.edge.webview;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nabto.edge.audiodemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridging-Header.h";
@@ -728,7 +736,7 @@
 		};
 		6D04A6F81E3F4C4800DD9F70 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38ACE60244CD232FE27564C7 /* Pods-NabtoEdgeWebviewTests.debug.xcconfig */;
+			baseConfigurationReference = DDCC5D9FE21049DB71CB9334 /* Pods-NabtoEdgeAudioDemoTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -748,7 +756,7 @@
 		};
 		6D04A6F91E3F4C4800DD9F70 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 418369131D7B7FFCF8F490C7 /* Pods-NabtoEdgeWebviewTests.release.xcconfig */;
+			baseConfigurationReference = CB7EBA95386E9621D0559879 /* Pods-NabtoEdgeAudioDemoTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -769,7 +777,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6D04A6D21E3F4C4800DD9F70 /* Build configuration list for PBXProject "NabtoEdgeWebview" */ = {
+		6D04A6D21E3F4C4800DD9F70 /* Build configuration list for PBXProject "NabtoEdgeAudioDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6D04A6F21E3F4C4800DD9F70 /* Debug */,
@@ -778,7 +786,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6D04A6F41E3F4C4800DD9F70 /* Build configuration list for PBXNativeTarget "Nabto Edge Webview" */ = {
+		6D04A6F41E3F4C4800DD9F70 /* Build configuration list for PBXNativeTarget "Nabto Edge Audio Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6D04A6F51E3F4C4800DD9F70 /* Debug */,
@@ -787,7 +795,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6D04A6F71E3F4C4800DD9F70 /* Build configuration list for PBXNativeTarget "NabtoEdgeWebviewTests" */ = {
+		6D04A6F71E3F4C4800DD9F70 /* Build configuration list for PBXNativeTarget "NabtoEdgeAudioDemoTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6D04A6F81E3F4C4800DD9F70 /* Debug */,

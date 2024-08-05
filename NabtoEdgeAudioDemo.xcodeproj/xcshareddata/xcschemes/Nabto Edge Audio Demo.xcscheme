@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6D04A6D61E3F4C4800DD9F70"
-               BuildableName = "Nabto Edge Webview.app"
-               BlueprintName = "Nabto Edge Webview"
-               ReferencedContainer = "container:NabtoEdgeWebview.xcodeproj">
+               BuildableName = "Nabto Edge Audio Demo.app"
+               BlueprintName = "Nabto Edge Audio Demo"
+               ReferencedContainer = "container:NabtoEdgeAudioDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6D04A6EA1E3F4C4800DD9F70"
-               BuildableName = "NabtoEdgeWebviewTests.xctest"
-               BlueprintName = "NabtoEdgeWebviewTests"
-               ReferencedContainer = "container:NabtoEdgeWebview.xcodeproj">
+               BuildableName = "NabtoEdgeAudioDemoTests.xctest"
+               BlueprintName = "NabtoEdgeAudioDemoTests"
+               ReferencedContainer = "container:NabtoEdgeAudioDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -59,9 +59,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6D04A6D61E3F4C4800DD9F70"
-            BuildableName = "Nabto Edge Webview.app"
-            BlueprintName = "Nabto Edge Webview"
-            ReferencedContainer = "container:NabtoEdgeWebview.xcodeproj">
+            BuildableName = "Nabto Edge Audio Demo.app"
+            BlueprintName = "Nabto Edge Audio Demo"
+            ReferencedContainer = "container:NabtoEdgeAudioDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6D04A6D61E3F4C4800DD9F70"
-            BuildableName = "Nabto Edge Webview.app"
-            BlueprintName = "Nabto Edge Webview"
-            ReferencedContainer = "container:NabtoEdgeWebview.xcodeproj">
+            BuildableName = "Nabto Edge Audio Demo.app"
+            BlueprintName = "Nabto Edge Audio Demo"
+            ReferencedContainer = "container:NabtoEdgeAudioDemo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
