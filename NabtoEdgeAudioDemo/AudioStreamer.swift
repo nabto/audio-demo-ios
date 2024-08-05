@@ -36,52 +36,61 @@ fileprivate class TimeBase {
 
 class AudioStreamer {
     // AVAudioEngine
-    let engine = AVAudioEngine()
-    let audioSession = AVAudioSession.sharedInstance()
-    let mixerNode: AVAudioMixerNode
-    let playerNode = AVAudioPlayerNode()
-    let sampleRate: Double
-    let sampleRateConversion: Double
-    let inputFormat: AVAudioFormat
-    let outputFormat: AVAudioFormat
-    let formatConverter: AVAudioConverter
+    private let engine = AVAudioEngine()
+    private let audioSession = AVAudioSession.sharedInstance()
+    private let mixerNode: AVAudioMixerNode
+    private let playerNode = AVAudioPlayerNode()
+    private let streamSampleRate: Double
+    
+    // Formats and converters
+    private let audioStreamFormat: AVAudioFormat    // Format sent across network
+    private let speakerFormat: AVAudioFormat        // Format required for playing on phone speakers
+    private let recordingFormat: AVAudioFormat      // Format of audio that comes from microphone
+    private let streamToSpeakerConverter: AVAudioConverter
+    private let recordingToStreamConverter: AVAudioConverter
+    private let streamToSpeakerSampleRateConversion: Double
+    private let recordingToStreamSampleRateConversion: Double
     
     // Audio thread
-    var isAudioThreadRunning = true
-    var audioThread: Thread! = nil
+    private var isAudioThreadRunning = true
+    private var audioThread: Thread! = nil
     
     // TCP stream
-    var sockfd = Int32(-1)
-    var sockthread: Thread! = nil
-    var connectionHost: String! = nil
-    var connectionPort: UInt16 = 0
-    var isConnected = false
+    private var sockfd = Int32(-1)
+    private var sockthread: Thread! = nil
+    private var connectionHost: String! = nil
+    private var connectionPort: UInt16 = 0
+    private var isConnected = false
     
     // Circular buffer
-    let circularBuffer = UnsafeMutablePointer<TPCircularBuffer>.allocate(capacity: 1)
-    let sampleSize = MemoryLayout<Int16>.size
+    private let circularBuffer = UnsafeMutablePointer<TPCircularBuffer>.allocate(capacity: 1)
+    private let streamSampleSize = MemoryLayout<Int16>.size
     
     // Recording
     var isRecording = false
-    let recordConverter: AVAudioConverter
     
     init() {
         try! audioSession.setCategory(.playAndRecord)
         try! audioSession.setActive(true)
         mixerNode = engine.mainMixerNode
         
-        sampleRate = 8000.0
-        outputFormat = mixerNode.outputFormat(forBus: 0)
-        inputFormat = AVAudioFormat(commonFormat: .pcmFormatInt16, sampleRate: sampleRate, channels: 1, interleaved: false)!
-        formatConverter = AVAudioConverter(from: inputFormat, to: outputFormat)!
+        streamSampleRate = 8000.0
         
-        sampleRateConversion = inputFormat.sampleRate / outputFormat.sampleRate
+        speakerFormat = mixerNode.outputFormat(forBus: 0)
+        audioStreamFormat = AVAudioFormat(commonFormat: .pcmFormatInt16, sampleRate: streamSampleRate, channels: 1, interleaved: false)!
+        recordingFormat = engine.inputNode.inputFormat(forBus: 0)
+        
+        streamToSpeakerConverter = AVAudioConverter(from: audioStreamFormat, to: speakerFormat)!
+        recordingToStreamConverter = AVAudioConverter(from: recordingFormat, to: audioStreamFormat)!
+        
+        streamToSpeakerSampleRateConversion = audioStreamFormat.sampleRate / speakerFormat.sampleRate
+        recordingToStreamSampleRateConversion = recordingFormat.sampleRate / audioStreamFormat.sampleRate
         
         // engine setup
         engine.attach(playerNode)
         engine.connect(playerNode, to: mixerNode, format: playerNode.outputFormat(forBus: 0))
         
-        recordConverter = AVAudioConverter(from:  engine.inputNode.inputFormat(forBus: 0), to: inputFormat)!
+        // recordConverter = AVAudioConverter(from:  engine.inputNode.inputFormat(forBus: 0), to: inputFormat)!
         
         engine.prepare()
         try! engine.start()
@@ -89,7 +98,7 @@ class AudioStreamer {
         
         // allow 5 seconds of buffered audio
         let bufferSizeInSeconds = 5
-        let bufferSize = Int(sampleRate) * bufferSizeInSeconds * sampleSize
+        let bufferSize = Int(streamSampleRate) * bufferSizeInSeconds * streamSampleSize
         _TPCircularBufferInit(circularBuffer, UInt32(bufferSize), MemoryLayout<TPCircularBuffer>.size)
         
         audioThread = Thread.init(target: self, selector: #selector(audioConsumer), object: nil)
@@ -98,10 +107,17 @@ class AudioStreamer {
     
     deinit {
         isAudioThreadRunning = false
+        isConnected = false
+        isRecording = false
         engine.inputNode.removeTap(onBus: 0)
+        
         audioThread.cancel()
+        sockthread.cancel()
+        
         TPCircularBufferCleanup(circularBuffer)
         circularBuffer.deallocate()
+        
+        close(sockfd)
     }
     
     func connectTo(host: String, port: UInt16) {
@@ -115,17 +131,14 @@ class AudioStreamer {
         if !isConnected { return }
         
         isRecording = true
-        let recordFormat = engine.inputNode.inputFormat(forBus: 0)
-        let deviceFormat = self.inputFormat
         engine.inputNode.installTap(
             onBus: 0,
             bufferSize: 4096,
-            format: recordFormat,
+            format: self.recordingFormat,
             block: { (buffer, when) in
-                let conv = recordFormat.sampleRate / deviceFormat.sampleRate
-                let capacity = UInt32(Double(buffer.frameCapacity) / conv)
-                let convertedBuffer = AVAudioPCMBuffer(pcmFormat: deviceFormat, frameCapacity: capacity)!
-                let len = UInt32(Double(buffer.frameLength) / conv)
+                let capacity = UInt32(Double(buffer.frameCapacity) / self.recordingToStreamSampleRateConversion)
+                let convertedBuffer = AVAudioPCMBuffer(pcmFormat: self.audioStreamFormat, frameCapacity: capacity)!
+                let len = UInt32(Double(buffer.frameLength) / self.recordingToStreamSampleRateConversion)
                 convertedBuffer.frameLength = len
                 
                 let inputBlock: AVAudioConverterInputBlock = { inNumPackets, outStatus in
@@ -134,12 +147,12 @@ class AudioStreamer {
                 }
                 
                 var error: NSError? = nil
-                self.recordConverter.convert(to: convertedBuffer, error: &error, withInputFrom: inputBlock)
+                self.recordingToStreamConverter.convert(to: convertedBuffer, error: &error, withInputFrom: inputBlock)
                 
                 if error != nil {
                     fatalError(error!.localizedDescription)
                 } else {
-                    write(self.sockfd, convertedBuffer.int16ChannelData![0], Int(len) * self.sampleSize)
+                    write(self.sockfd, convertedBuffer.int16ChannelData![0], Int(len) * self.streamSampleSize)
                 }
             }
         )
@@ -158,8 +171,8 @@ class AudioStreamer {
         // we use (sampleRate / 4) --> 250ms worth of samples in the buffer
         // and poll the circular buffer every 200ms by sleeping the thread
         var availableBytes = UInt32(0)
-        let minSamples = Int(sampleRate / 4)
-        let minBytes = UInt32(minSamples * sampleSize)
+        let minSamples = Int(streamSampleRate / 4)
+        let minBytes = UInt32(minSamples * streamSampleSize)
         let sleepDuration = TimeBase.toAbs(nanos: 200 * TimeBase.NANOS_PER_MILLISEC)
         
         while isAudioThreadRunning {
@@ -169,14 +182,14 @@ class AudioStreamer {
                 let sampleCount = minSamples
                 let samplePtr = tail.bindMemory(to: Int16.self, capacity: sampleCount)
                 
-                let pcmBuffer = AVAudioPCMBuffer(pcmFormat: inputFormat, frameCapacity: UInt32(sampleCount))!
+                let pcmBuffer = AVAudioPCMBuffer(pcmFormat: audioStreamFormat, frameCapacity: UInt32(sampleCount))!
                 pcmBuffer.frameLength = UInt32(sampleCount)
                 let channel = pcmBuffer.int16ChannelData![0]
                 
-                memcpy(channel, samplePtr, sampleCount * sampleSize)
+                memcpy(channel, samplePtr, sampleCount * streamSampleSize)
                 
-                let capacity = UInt32(Double(pcmBuffer.frameCapacity) / sampleRateConversion)
-                let convertedBuffer = AVAudioPCMBuffer(pcmFormat: outputFormat, frameCapacity: capacity)!
+                let capacity = UInt32(Double(pcmBuffer.frameCapacity) / streamToSpeakerSampleRateConversion)
+                let convertedBuffer = AVAudioPCMBuffer(pcmFormat: speakerFormat, frameCapacity: capacity)!
                 convertedBuffer.frameLength = capacity
                 
                 let inputBlock: AVAudioConverterInputBlock = { inNumPackets, outStatus in
@@ -185,7 +198,7 @@ class AudioStreamer {
                 }
                 
                 var error: NSError? = nil
-                formatConverter.convert(to: convertedBuffer, error: &error, withInputFrom: inputBlock)
+                streamToSpeakerConverter.convert(to: convertedBuffer, error: &error, withInputFrom: inputBlock)
                 
                 if error != nil {
                     fatalError(error!.localizedDescription)
@@ -208,14 +221,16 @@ class AudioStreamer {
         var availableBytes = UInt32(0)
         
         connectSocket()
-        while true {
+        while isAudioThreadRunning {
             let head = TPCircularBufferHead(circularBuffer, &availableBytes)
             let bytesRead = read(sockfd, buffer, bufferSize)
-            if bytesRead > 0, let head = head, availableBytes > bytesRead {
-                memcpy(head, buffer, bytesRead)
-                TPCircularBufferProduce(circularBuffer, UInt32(bytesRead))
-            } else {
-                print("ERROR: audio ringbuffer is full \(bytesRead) needed, \(availableBytes) available")
+            if bytesRead > 0 {
+                if let head = head, availableBytes > bytesRead {
+                    memcpy(head, buffer, bytesRead)
+                    TPCircularBufferProduce(circularBuffer, UInt32(bytesRead))
+                } else {
+                    print("ERROR: audio ringbuffer is full \(bytesRead) needed, \(availableBytes) available")
+                }
             }
         }
     }

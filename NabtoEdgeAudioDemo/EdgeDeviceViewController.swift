@@ -19,10 +19,13 @@ class EdgeDeviceViewController: DeviceDetailsViewController, WKUIDelegate {
     private let cborEncoder: CBOREncoder = CBOREncoder()
     private var tunnel: TcpTunnel? = nil
 
+    private var recordImageView : UIImageView!
+    private var recordImageOn = UIImage(systemName: "mic.circle.fill")
+    private var recordImageOff = UIImage(systemName: "mic.slash.circle.fill")
+    
     @IBOutlet weak var connectingView       : UIView!
     @IBOutlet weak var spinner              : UIActivityIndicatorView!
     @IBOutlet weak var recordButton         : UIButton!
-    private var recordImageView : UIImageView!
     
     @IBOutlet weak var deviceIdLabel         : UILabel!
     @IBOutlet weak var appNameAndVersionLabel: UILabel!
@@ -51,11 +54,11 @@ class EdgeDeviceViewController: DeviceDetailsViewController, WKUIDelegate {
     
     @IBAction func recordButtonPressed(sender: UIButton) {
         if !audioStreamer.isRecording {
-            recordImageView.image = UIImage(systemName: "mic.circle.fill")
+            recordImageView.image = recordImageOn
             recordImageView.tintColor = .red
             DispatchQueue.main.async { self.audioStreamer.startRecording() }
         } else {
-            recordImageView.image = UIImage(systemName: "mic.slash.circle.fill")
+            recordImageView.image = recordImageOff
             recordImageView.tintColor = nil
             DispatchQueue.main.async { self.audioStreamer.stopRecording() }
         }
@@ -127,7 +130,7 @@ class EdgeDeviceViewController: DeviceDetailsViewController, WKUIDelegate {
         }
     }
     
-    private func startVideo() {
+    private func connectAudioStream() {
         if let tunnel = self.tunnel, let port = try? tunnel.getLocalPort() {
             audioStreamer.connectTo(host: "127.0.0.1", port: port)
         } else {
@@ -137,22 +140,12 @@ class EdgeDeviceViewController: DeviceDetailsViewController, WKUIDelegate {
         self.busy = false
     }
     
-    private func getServiceInfo(connection: Connection) throws -> ServiceInfo {
-        let request = try connection.createCoapRequest(method: "GET", path: "/tcp-tunnels/services/rtsp")
-        let response = try request.execute()
-        if (response.status == 205) {
-            return try ServiceInfo.decode(cbor: response.payload)
-        } else {
-            throw NabtoEdgeClientError.FAILED_WITH_DETAIL(detail: "Could not get device service info, got status \(response.status)")
-        }
-    }
-    
     private func startTunnel() {
         do {
             let conn = try EdgeConnectionManager.shared.getConnection(self.device)
             tunnel = try conn.createTcpTunnel()
             tunnel?.openAsync(service: "audio-pcm", localPort: 0, closure: { _ in
-                self.startVideo()
+                self.connectAudioStream()
             })
         } catch {
             handleDeviceError(error)
@@ -167,13 +160,12 @@ class EdgeDeviceViewController: DeviceDetailsViewController, WKUIDelegate {
         super.viewDidLoad()
         self.busy = true
         
-        
         var config = UIButton.Configuration.plain()
         config.baseBackgroundColor = .clear
         recordButton.configuration = config
         
         recordImageView = UIImageView()
-        recordImageView.image = UIImage(systemName: "mic.slash.circle.fill")
+        recordImageView.image = recordImageOff
         recordImageView.translatesAutoresizingMaskIntoConstraints = false
         recordButton.addSubview(recordImageView)
         recordImageView.contentMode = .scaleAspectFill
