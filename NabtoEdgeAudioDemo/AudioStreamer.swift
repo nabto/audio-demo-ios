@@ -71,6 +71,7 @@ class AudioStreamer {
     
     init() {
         try! audioSession.setCategory(.playAndRecord)
+        try! audioSession.overrideOutputAudioPort(.speaker)
         try! audioSession.setActive(true)
         mixerNode = engine.mainMixerNode
         
@@ -89,8 +90,6 @@ class AudioStreamer {
         // engine setup
         engine.attach(playerNode)
         engine.connect(playerNode, to: mixerNode, format: playerNode.outputFormat(forBus: 0))
-        
-        // recordConverter = AVAudioConverter(from:  engine.inputNode.inputFormat(forBus: 0), to: inputFormat)!
         
         engine.prepare()
         try! engine.start()
