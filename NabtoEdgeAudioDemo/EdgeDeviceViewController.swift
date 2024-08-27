@@ -52,15 +52,21 @@ class EdgeDeviceViewController: DeviceDetailsViewController, WKUIDelegate {
         }
     }
     
-    @IBAction func recordButtonPressed(sender: UIButton) {
-        if !audioStreamer.isRecording {
-            recordImageView.image = recordImageOn
-            recordImageView.tintColor = .red
-            DispatchQueue.main.async { self.audioStreamer.startRecording() }
-        } else {
-            recordImageView.image = recordImageOff
-            recordImageView.tintColor = nil
-            DispatchQueue.main.async { self.audioStreamer.stopRecording() }
+    @objc func recordButtonDown(sender: UIButton) {
+        recordImageView.image = recordImageOn
+        recordImageView.tintColor = .red
+        DispatchQueue.main.async {
+            self.audioStreamer.setVolume(to: 0.0)
+            self.audioStreamer.startRecording()
+        }
+    }
+    
+    @objc func recordButtonUp(sender: UIButton) {
+        recordImageView.image = recordImageOff
+        recordImageView.tintColor = nil
+        DispatchQueue.main.async {
+            self.audioStreamer.setVolume(to: 1.0)
+            self.audioStreamer.stopRecording()
         }
     }
 
@@ -160,6 +166,10 @@ class EdgeDeviceViewController: DeviceDetailsViewController, WKUIDelegate {
         super.viewDidLoad()
         self.busy = true
         
+        // Record button setup
+        recordButton.addTarget(self, action: #selector(recordButtonDown), for: .touchDown)
+        recordButton.addTarget(self, action: #selector(recordButtonUp), for: [.touchUpInside, .touchUpOutside])
+        
         var config = UIButton.Configuration.plain()
         config.baseBackgroundColor = .clear
         recordButton.configuration = config
@@ -173,6 +183,7 @@ class EdgeDeviceViewController: DeviceDetailsViewController, WKUIDelegate {
         recordImageView.heightAnchor.constraint(equalTo: recordButton.heightAnchor).isActive = true
         recordImageView.centerXAnchor.constraint(equalTo: recordButton.centerXAnchor).isActive = true
         recordImageView.centerYAnchor.constraint(equalTo: recordButton.centerYAnchor).isActive = true
+        // ---
         
         startTunnelOnMainThread()
     }
@@ -189,6 +200,7 @@ class EdgeDeviceViewController: DeviceDetailsViewController, WKUIDelegate {
                 .removeObserver(self, name: NSNotification.Name(EdgeConnectionManager.eventNameNoNetwork), object: nil)
         NotificationCenter.default
                 .removeObserver(self, name: NSNotification.Name(EdgeConnectionManager.eventNameNetworkAvailable), object: nil)
+        self.audioStreamer.close()
     }
 
     override func viewDidAppear(_ animated: Bool) {

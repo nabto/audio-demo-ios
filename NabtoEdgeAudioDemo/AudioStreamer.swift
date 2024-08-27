@@ -34,13 +34,21 @@ fileprivate class TimeBase {
     }
 }
 
+enum AudioStreamerError: Error {
+    case socketFailedToConnect
+    case streamToSpeakerFormatConversionFailed
+    case recordingToStreamFormatConversionFailed
+    case audioRingbufferFull
+}
+
 class AudioStreamer {
     // AVAudioEngine
     private let engine = AVAudioEngine()
     private let audioSession = AVAudioSession.sharedInstance()
+    private let streamSampleRate: Double
     private let mixerNode: AVAudioMixerNode
     private let playerNode = AVAudioPlayerNode()
-    private let streamSampleRate: Double
+    private let playerMixer = AVAudioMixerNode()
     
     // Formats and converters
     private let audioStreamFormat: AVAudioFormat    // Format sent across network
@@ -69,6 +77,9 @@ class AudioStreamer {
     // Recording
     var isRecording = false
     
+    // Callbacks
+    var onError: ((_ error: AudioStreamerError) -> ())? = nil
+    
     init() {
         try! audioSession.setCategory(.playAndRecord)
         try! audioSession.overrideOutputAudioPort(.speaker)
@@ -89,7 +100,9 @@ class AudioStreamer {
         
         // engine setup
         engine.attach(playerNode)
-        engine.connect(playerNode, to: mixerNode, format: playerNode.outputFormat(forBus: 0))
+        engine.attach(playerMixer)
+        engine.connect(playerNode, to: playerMixer, format: playerNode.outputFormat(forBus: 0))
+        engine.connect(playerMixer, to: mixerNode, format: playerMixer.outputFormat(forBus: 0))
         
         engine.prepare()
         try! engine.start()
@@ -104,7 +117,7 @@ class AudioStreamer {
         audioThread.start()
     }
     
-    deinit {
+    func close() {
         isAudioThreadRunning = false
         isConnected = false
         isRecording = false
@@ -116,7 +129,7 @@ class AudioStreamer {
         TPCircularBufferCleanup(circularBuffer)
         circularBuffer.deallocate()
         
-        close(sockfd)
+        Darwin.close(sockfd)
     }
     
     func connectTo(host: String, port: UInt16) {
@@ -149,7 +162,7 @@ class AudioStreamer {
                 self.recordingToStreamConverter.convert(to: convertedBuffer, error: &error, withInputFrom: inputBlock)
                 
                 if error != nil {
-                    fatalError(error!.localizedDescription)
+                    self.onError?(.recordingToStreamFormatConversionFailed)
                 } else {
                     write(self.sockfd, convertedBuffer.int16ChannelData![0], Int(len) * self.streamSampleSize)
                 }
@@ -162,6 +175,10 @@ class AudioStreamer {
         
         isRecording = false
         engine.inputNode.removeTap(onBus: 0)
+    }
+    
+    func setVolume(to: Float) {
+        playerMixer.volume = to
     }
     
     @objc
@@ -200,7 +217,7 @@ class AudioStreamer {
                 streamToSpeakerConverter.convert(to: convertedBuffer, error: &error, withInputFrom: inputBlock)
                 
                 if error != nil {
-                    fatalError(error!.localizedDescription)
+                    self.onError?(.streamToSpeakerFormatConversionFailed)
                 } else {
                     playerNode.scheduleBuffer(convertedBuffer)
                     TPCircularBufferConsume(circularBuffer, minBytes)
@@ -237,7 +254,7 @@ class AudioStreamer {
     private func connectSocket() {
         sockfd = socket(AF_INET, SOCK_STREAM, 0)
         if sockfd == -1 {
-            fatalError("Socket failed to be created")
+            self.onError?(.socketFailedToConnect)
         }
         
         var addr = sockaddr_in()
@@ -252,7 +269,7 @@ class AudioStreamer {
         }
         
         if connectResult != 0 {
-            fatalError("failed to connect")
+            self.onError?(.socketFailedToConnect)
         } else {
             isConnected = true
         }

@@ -11,7 +11,7 @@
         <!--Overview-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="OverviewViewController" customModule="Nabto_Edge_Webview" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="OverviewViewController" customModule="Nabto_Edge_Audio_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -24,7 +24,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DeviceCell" rowHeight="72" id="9Y7-sh-O29" customClass="DeviceCell" customModule="Nabto_Edge_Webview" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DeviceCell" rowHeight="72" id="9Y7-sh-O29" customClass="DeviceCell" customModule="Nabto_Edge_Audio_Demo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="375" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Y7-sh-O29" id="Aoq-SC-ZP9">
@@ -89,7 +89,7 @@
                                             <outlet property="statusIcon" destination="Sln-SM-3C8" id="2eg-KY-fEE"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NoDevicesCell" rowHeight="72" id="srd-Ev-xhc" customClass="NoDevicesCell" customModule="Nabto_Edge_Webview" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NoDevicesCell" rowHeight="72" id="srd-Ev-xhc" customClass="NoDevicesCell" customModule="Nabto_Edge_Audio_Demo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="122" width="375" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="srd-Ev-xhc" id="Wnl-d7-3dR">
@@ -140,7 +140,7 @@
                                             <outlet property="messageView" destination="MUe-YE-Gn8" id="UR2-ns-pO9"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OverviewButtonCell" rowHeight="110" id="h4b-gv-r7F" customClass="OverviewButtonCell" customModule="Nabto_Edge_Webview" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OverviewButtonCell" rowHeight="110" id="h4b-gv-r7F" customClass="OverviewButtonCell" customModule="Nabto_Edge_Audio_Demo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="194" width="375" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h4b-gv-r7F" id="JAw-lM-dCq">
@@ -246,7 +246,7 @@
         <!--App settings-->
         <scene sceneID="JPM-xi-6e7">
             <objects>
-                <viewController id="Sgg-j7-M8A" customClass="SettingsViewController" customModule="Nabto_Edge_Webview" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Sgg-j7-M8A" customClass="SettingsViewController" customModule="Nabto_Edge_Audio_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GZ1-7I-Lra"/>
                         <viewControllerLayoutGuide type="bottom" id="EEL-gn-L3u"/>
@@ -340,7 +340,7 @@
         <!--Device Settings-->
         <scene sceneID="s8i-Nw-rEz">
             <objects>
-                <viewController storyboardIdentifier="DeviceSettingsViewController" title="Device Settings" id="3bu-dc-GHF" customClass="DeviceSettingsViewController" customModule="Nabto_Edge_Webview" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeviceSettingsViewController" title="Device Settings" id="3bu-dc-GHF" customClass="DeviceSettingsViewController" customModule="Nabto_Edge_Audio_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="F9H-Ru-xCg"/>
                         <viewControllerLayoutGuide type="bottom" id="Ahy-NA-Ygu"/>
@@ -490,7 +490,7 @@
         <!--Discover-->
         <scene sceneID="hVs-th-4RT">
             <objects>
-                <viewController id="iQE-Ou-Jwx" customClass="DiscoverViewController" customModule="Nabto_Edge_Webview" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="iQE-Ou-Jwx" customClass="DiscoverViewController" customModule="Nabto_Edge_Audio_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2wy-se-8MR"/>
                         <viewControllerLayoutGuide type="bottom" id="6nK-d5-SrT"/>
@@ -503,7 +503,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DeviceCell" rowHeight="72" id="YXM-ig-I2l" customClass="DeviceCell" customModule="Nabto_Edge_Webview" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DeviceCell" rowHeight="72" id="YXM-ig-I2l" customClass="DeviceCell" customModule="Nabto_Edge_Audio_Demo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="375" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YXM-ig-I2l" id="d5K-2d-DLx">
@@ -556,7 +556,7 @@
                                             <outlet property="nameLabel" destination="0RG-n7-UFH" id="4XD-1b-8au"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NoDevicesCell" rowHeight="72" id="4TF-4h-AeV" customClass="NoDevicesCell" customModule="Nabto_Edge_Webview" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NoDevicesCell" rowHeight="72" id="4TF-4h-AeV" customClass="NoDevicesCell" customModule="Nabto_Edge_Audio_Demo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="122" width="375" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4TF-4h-AeV" id="LPo-xD-QoN">
@@ -607,7 +607,7 @@
                                             <outlet property="messageView" destination="RFZ-79-RmP" id="BIa-Du-1rt"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DiscoverButtonCell" rowHeight="110" id="5dn-cv-9bi" customClass="DiscoverButtonCell" customModule="Nabto_Edge_Webview" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DiscoverButtonCell" rowHeight="110" id="5dn-cv-9bi" customClass="DiscoverButtonCell" customModule="Nabto_Edge_Audio_Demo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="194" width="375" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5dn-cv-9bi" id="EAt-Eg-zuX">
@@ -678,7 +678,7 @@
         <!--ACME Heater-->
         <scene sceneID="Xpn-Dh-Sju">
             <objects>
-                <viewController storyboardIdentifier="EdgeDeviceViewController" title="ACME Heater" id="XEm-96-IUG" customClass="EdgeDeviceViewController" customModule="Nabto_Edge_Webview" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EdgeDeviceViewController" title="ACME Heater" id="XEm-96-IUG" customClass="EdgeDeviceViewController" customModule="Nabto_Edge_Audio_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="H8o-od-ao2"/>
                         <viewControllerLayoutGuide type="bottom" id="W6v-6E-quU"/>
@@ -726,9 +726,6 @@
                                         <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="recordButtonPressedWithSender:" destination="XEm-96-IUG" eventType="touchDown" id="IcF-21-NRb"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -778,7 +775,7 @@
         <!--Confirm Pairing-->
         <scene sceneID="tW8-cj-yoe">
             <objects>
-                <viewController title="Pair device" id="OZe-rU-UnQ" userLabel="Confirm Pairing" customClass="PairingViewController" customModule="Nabto_Edge_Webview" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Pair device" id="OZe-rU-UnQ" userLabel="Confirm Pairing" customClass="PairingViewController" customModule="Nabto_Edge_Audio_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="T9A-lo-nmK"/>
                         <viewControllerLayoutGuide type="bottom" id="KDU-ru-eBE"/>
@@ -909,7 +906,7 @@
         <!--Pairing Confirmed-->
         <scene sceneID="vr4-NH-DZZ">
             <objects>
-                <viewController storyboardIdentifier="PairingConfirmedViewController" id="Ml6-fS-9zq" userLabel="Pairing Confirmed" customClass="PairingConfirmedViewController" customModule="Nabto_Edge_Webview" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PairingConfirmedViewController" id="Ml6-fS-9zq" userLabel="Pairing Confirmed" customClass="PairingConfirmedViewController" customModule="Nabto_Edge_Audio_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0ad-qZ-2Ay"/>
                         <viewControllerLayoutGuide type="bottom" id="b6b-41-WsC"/>
@@ -987,7 +984,7 @@
         <!--Add Device-->
         <scene sceneID="FAy-Vz-Rno">
             <objects>
-                <viewController id="5YR-MB-x8z" userLabel="Add Device" customClass="AddDeviceViewController" customModule="Nabto_Edge_Webview" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5YR-MB-x8z" userLabel="Add Device" customClass="AddDeviceViewController" customModule="Nabto_Edge_Audio_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YGP-cJ-2cp"/>
                         <viewControllerLayoutGuide type="bottom" id="njy-4f-22j"/>
@@ -1125,7 +1122,7 @@
         <!--Help-->
         <scene sceneID="dw7-5T-PJm">
             <objects>
-                <viewController title="Help" id="hSU-LS-9B3" customClass="HelpViewController" customModule="Nabto_Edge_Webview" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Help" id="hSU-LS-9B3" customClass="HelpViewController" customModule="Nabto_Edge_Audio_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="56Z-iv-1TY"/>
                         <viewControllerLayoutGuide type="bottom" id="aUc-Xh-LQn"/>
@@ -1216,7 +1213,7 @@ New devices can be added from the overview page: To add a device, your client (t
         <!--Edit user-->
         <scene sceneID="S92-4U-Vf0">
             <objects>
-                <viewController title="Edit user" id="dfX-gc-DOG" customClass="EditUserViewController" customModule="Nabto_Edge_Webview" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Edit user" id="dfX-gc-DOG" customClass="EditUserViewController" customModule="Nabto_Edge_Audio_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZzR-sO-9Ed"/>
                         <viewControllerLayoutGuide type="bottom" id="aMw-Vf-2lQ"/>
